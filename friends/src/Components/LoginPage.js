@@ -1,4 +1,5 @@
 import React from 'react'
+import { axiosWithAuth } from '../Utils/axiosWithAuth'
 
 
 
@@ -25,10 +26,17 @@ class LoginPage extends React.Component{
     }
 
 
-// login = e => {
-//     e.preventDefault();
+login = e => {
+    e.preventDefault();
+    axiosWithAuth() 
+    .post('/login', this.state.credentials)
+    TouchEvent(res => {
+        localStorage.setItem('token', res.data.payload);
+        this.props.history.push('/friends')
+    })
+    .catch(err=> console.log(err));
 
-// }
+}
 render() {
     return (
         <div>
