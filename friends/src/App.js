@@ -22,7 +22,7 @@ function App() {
       <Switch>
         <PrivateRoute exact path ="/friends" component ={Friends}/>
         <Route path="/login" component ={LoginPage} />
-          
+        <Route component ={LoginPage} />
       </Switch>
 
 

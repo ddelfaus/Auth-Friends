@@ -30,7 +30,7 @@ login = e => {
     e.preventDefault();
     axiosWithAuth() 
     .post('/login', this.state.credentials)
-    TouchEvent(res => {
+    .then(res => {
         localStorage.setItem('token', res.data.payload);
         this.props.history.push('/friends')
     })
@@ -40,24 +40,27 @@ login = e => {
 render() {
     return (
         <div>
-            <input 
-                type ="text"
-                name="username"
-                value ={this.state.credentials.username}
-                onChange ={this.handleChange}
-                placeholder= "Username Here"
-            
-            />
-            <input 
-                type ="password"
-                nane= "password"
-                value = {this.state.credentials.password}
-                onChange= {this.handleChange}
-                placeholder= "password"
-            
-            />
+            <form onSubmit ={this.login}>
+                <input 
+                    type ="text"
+                    name="username"
+                    value ={this.state.credentials.username}
+                    onChange ={this.handleChange}
+                    placeholder= "Username Here"
+                
+                />
+                <input 
+                    type ="password"
+                    name= "password"
+                    value = {this.state.credentials.password}
+                    onChange= {this.handleChange}
+                    placeholder= "password"
+                
+                />
 
             <button >Login</button>
+
+            </form>
         </div>
 
     )
